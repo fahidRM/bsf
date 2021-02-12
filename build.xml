@@ -108,13 +108,11 @@ TARGETS:
             <classpath location="${basedir}/lib/javacc.jar" />
             <arg line="MAS2JavaParser.jcc" />
         </java>
-        <move file="${basedir}/src/jason/mas2j/parser/MAS2JavaParser.html" todir="${basedir}/doc" />
 
         <java dir="${basedir}/src/jason/asSyntax/parser" classname="jjdoc" fork="yes">
             <classpath location="${basedir}/lib/javacc.jar" />
             <arg line="AS2JavaParser.jcc" />
         </java>
-        <move file="${basedir}/src/jason/asSyntax/parser/AS2JavaParser.html" todir="${basedir}/doc" />
 
     </target>
 
@@ -290,7 +288,7 @@ TARGETS:
     <!-- generate only the UML diagrams in PDF format -->
     <target name="uml" unless="dot-nok" >
             <property name="uml.dir" value="${basedir}/doc/uml"/>
-            <property name="src.uml.dir" value="${src.dir}/doc/uml"/>
+            <property name="src.uml.dir" value="${basedir}/doc/uml"/>
             <mkdir dir="${uml.dir}"/>
             <javadoc sourcepath="src" packagenames="jason.asSyntax" package="true" >
                <doclet name="org.umlgraph.doclet.UmlGraph" path="${basedir}/lib/UMLGraph.jar">
@@ -354,7 +352,7 @@ TARGETS:
         <delete dir="${distDir}/doc/mini-tutorial/src" />
 
         <tar compression="gzip" tarfile="${distFile}.tgz" longfile="gnu">
-            <tarfileset dir="${distDir}/.." mode="755">
+            <tarfileset dir="${distDir}/.." filemode="755">
                 <include name="Jason-${version}.${release}/**/*.sh" />
                 <include name="Jason-${version}.${release}/**/asl2*" />
             </tarfileset>
